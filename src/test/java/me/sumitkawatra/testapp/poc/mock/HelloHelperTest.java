@@ -10,8 +10,11 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
+import org.mockito.invocation.InvocationOnMock;
+
 import static org.mockito.Mockito.*;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.stubbing.Answer;
 
 import testapp.domain.Hello;
 import testapp.helper.HelloHelper;
@@ -31,6 +34,15 @@ public class HelloHelperTest {
 				new Hello("Mock Greeting 4"),
 				new Hello("Mock Greeting 5")
 		}));
+		
+		//Mock Void object.
+		doAnswer(new Answer<Void>() {
+			public Void answer(InvocationOnMock invokation) throws Throwable {
+				System.out.println(" Got you Mockito " + invokation.getArgument(0).toString());
+				return null;
+			}
+		}).when(helloService).save(any(Hello.class));
+		
 	}
 
 	@After
@@ -38,15 +50,21 @@ public class HelloHelperTest {
 	}
 
 	@Test
-	public void totest() {
+	public void toTestGetList() {
 	
 		List<Hello> hellos =  new HelloHelper(helloService).getGreetings();
 		
-		
+		if(hellos.isEmpty()) fail("get List Fail");
 		for(Hello h: hellos) {
 			System.out.println(h);
 		}
 		
+	}
+	
+	@Test
+	public void toTestSave() {
+	
+		new HelloHelper(helloService).save(new Hello("To Save....."));
 	}
 
 }

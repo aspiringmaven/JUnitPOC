@@ -8,7 +8,9 @@ import me.sumitkawatra.testapp.poc.parameterized.ArrayUtilTest;
 import me.sumitkawatra.testapp.poc.parameterized.FactorialTest;
 
 @RunWith(Suite.class)
-@SuiteClasses({ ArrayUtilTest.class, FactorialTest.class })
+@SuiteClasses({ ArrayUtilTest.class, FactorialTest.class, })
 public class ParameterizedTestSuite {
+	
+	public ParameterizedTestSuite(){}
 
 }

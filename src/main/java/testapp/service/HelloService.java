@@ -24,6 +24,14 @@ public class HelloService {
 		System.out.println("End getList Helper");
 		return hellos;
 	}
+		
+	public void save(Hello hello) {
+		System.out.println("Save Service Start");
+		
+		System.out.println(hello);
+		
+		System.out.println("Save Service End");
+	}
 	
 
 }
